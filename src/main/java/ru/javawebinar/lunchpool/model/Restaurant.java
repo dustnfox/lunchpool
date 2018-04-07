@@ -6,6 +6,8 @@ public class Restaurant extends AbstractNamedEntity {
 
     private String description;
 
+    private boolean enabled = true;
+
     public Restaurant(String name, String address) {
         this(null, name, address, null);
     }
@@ -34,6 +36,18 @@ public class Restaurant extends AbstractNamedEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void enable() {
+        enabled = true;
+    }
+
+    public void disable() {
+        enabled = false;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
     }
 
     @Override

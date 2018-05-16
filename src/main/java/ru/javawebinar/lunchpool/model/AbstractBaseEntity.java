@@ -1,10 +1,21 @@
 package ru.javawebinar.lunchpool.model;
 
-abstract class AbstractBaseEntity {
 
-    public static final int START_SEQ = 10000;
+import org.springframework.data.annotation.AccessType;
+import org.springframework.data.domain.Persistable;
 
-    Integer id;
+import javax.persistence.*;
+
+@MappedSuperclass
+@AccessType(value = AccessType.Type.FIELD)
+public abstract class AbstractBaseEntity implements Persistable<Integer> {
+
+    public static final int START_SEQ = 100000;
+
+    @Id
+    @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1, initialValue = START_SEQ)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
+    protected Integer id;
 
     AbstractBaseEntity() {
     }
@@ -13,6 +24,7 @@ abstract class AbstractBaseEntity {
         this.id = id;
     }
 
+    @Override
     public Integer getId() {
         return id;
     }
@@ -21,15 +33,10 @@ abstract class AbstractBaseEntity {
         this.id = id;
     }
 
+    @Override
     public boolean isNew() {
         return this.id == null;
     }
-
-    @Override
-    public String toString() {
-        return String.format("Entity %s (%s)", getClass().getName(), id);
-    }
-
 
     @Override
     public boolean equals(Object o) {

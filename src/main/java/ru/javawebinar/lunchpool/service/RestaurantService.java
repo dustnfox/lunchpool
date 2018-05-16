@@ -1,19 +1,21 @@
 package ru.javawebinar.lunchpool.service;
 
-import ru.javawebinar.lunchpool.model.Dish;
 import ru.javawebinar.lunchpool.model.Restaurant;
 import ru.javawebinar.lunchpool.util.exception.NotFoundException;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface RestaurantService {
 
-    List<Restaurant> getRestaurants();
+    List<Restaurant> getAll();
 
-    void removeRestaurant(Restaurant restaurant) throws NotFoundException;
+    List<Restaurant> getAllActive();
 
-    List<Dish> getDishes();
+    Restaurant get(int id);
 
-    List<Dish> getDishes(LocalDate date);
+    void delete(int id) throws NotFoundException;
+
+    Restaurant add(Restaurant restaurant);
+
+    Restaurant update(Restaurant restaurant);
 }

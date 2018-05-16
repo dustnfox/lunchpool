@@ -1,8 +1,22 @@
 package ru.javawebinar.lunchpool.model;
 
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+@MappedSuperclass
 public abstract class AbstractNamedEntity extends AbstractBaseEntity {
 
-    String name;
+    @NotBlank
+    @Size(min = 2, max = 100)
+    @Column(name = "name", nullable = false)
+    protected String name;
+
+    @NotNull
+    @Column(name = "enabled", nullable = false)
+    private boolean enabled = true;
 
     AbstractNamedEntity() {
     }
@@ -20,8 +34,11 @@ public abstract class AbstractNamedEntity extends AbstractBaseEntity {
         return this.name;
     }
 
-    @Override
-    public String toString() {
-        return String.format("Entity %s (%s, '%s')", getClass().getName(), id, name);
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }

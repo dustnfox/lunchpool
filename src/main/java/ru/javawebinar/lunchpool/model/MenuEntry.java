@@ -2,29 +2,30 @@ package ru.javawebinar.lunchpool.model;
 
 import java.time.LocalDate;
 
-public class Dish extends AbstractNamedDatedEntity {
+public class MenuEntry extends AbstractDatedEntity {
     private final Integer priceInCents;
-
     private final Restaurant restaurant;
+    private final String Description;
 
-    public Dish(LocalDate creationDate, Integer priceInCents, Restaurant restaurant) {
-        super(creationDate);
+    public MenuEntry(LocalDate date, Integer priceInCents, Restaurant restaurant, String description) {
+        super(date);
         this.priceInCents = priceInCents;
         this.restaurant = restaurant;
+        Description = description;
     }
 
-    public Dish(Integer id, String name, LocalDate creationDate, Integer priceInCents, Restaurant restaurant) {
-        super(id, name, creationDate);
+    public MenuEntry(Integer id, LocalDate date, Integer priceInCents, Restaurant restaurant, String description) {
+        super(id, date);
         this.priceInCents = priceInCents;
         this.restaurant = restaurant;
+        Description = description;
     }
 
     @Override
     public String toString() {
-        return "Dish{" +
+        return "MenuEntry{" +
                 "priceInCents=" + priceInCents +
                 ", restaurant=" + restaurant +
-                ", name='" + name + '\'' +
                 ", id=" + id +
                 '}';
     }

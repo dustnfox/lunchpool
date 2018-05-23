@@ -52,9 +52,9 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public Restaurant update(Restaurant restaurant) {
+    public Restaurant update(Restaurant restaurant, int id) {
         if (Objects.isNull(restaurant.getId())) {
-            throw new IllegalArgumentException("ID mustn't be null in add operation.");
+            throw new IllegalArgumentException("ID has to be null in update operation.");
         }
         return repository.save(restaurant);
     }

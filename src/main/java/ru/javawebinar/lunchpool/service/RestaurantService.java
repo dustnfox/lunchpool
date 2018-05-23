@@ -17,5 +17,5 @@ public interface RestaurantService {
 
     Restaurant add(Restaurant restaurant);
 
-    Restaurant update(Restaurant restaurant);
+    Restaurant update(Restaurant restaurant, int id);
 }

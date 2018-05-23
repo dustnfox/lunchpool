@@ -5,11 +5,11 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <bean class="ru.javawebinar.lunchpool.controller.json.JacksonObjectMapper" id="objectMapper"
+    <bean class="com.dustnfox.lunchpool.controller.json.JacksonObjectMapper" id="objectMapper"
           factory-method="getMapper"/>
 
     <mvc:annotation-driven/>
 
-    <context:component-scan base-package="ru.javawebinar.**.controller"/>
+    <context:component-scan base-package="com.dustnfox.**.controller"/>
 
 </beans>

@@ -20,7 +20,7 @@
         </encoder>
     </appender>
 
-    <logger name="ru.javawebinar.lunchpool" level="debug"/>
+    <logger name="com.dustnfox.lunchpool" level="debug"/>
     <!--<logger name="org.springframework.web.servlet" level="debug"/>-->
     <logger name="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver"
             level="debug"/>

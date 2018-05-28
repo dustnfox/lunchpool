@@ -45,9 +45,7 @@ public class RestaurantServiceTest extends AbstractServiceTest {
 
     @Test
     public void update() {
-        Restaurant updatedRestaurant = new Restaurant(REST1_ID, "updated name", REST1.getAddress(),
-                REST1.getDescription());
-        service.update(updatedRestaurant, REST1_ID);
-        assertMatch(service.getAll(), updatedRestaurant, REST2, REST_INACTIVE);
+        service.update(REST_UPDATED, REST1_ID);
+        assertMatch(service.getAll(), REST_UPDATED, REST2, REST_INACTIVE);
     }
 }

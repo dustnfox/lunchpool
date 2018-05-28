@@ -18,6 +18,8 @@ public abstract class AbstractBaseEntity implements Persistable<Integer> {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
     Integer id;
 
+    boolean enabled = true;
+
     AbstractBaseEntity() {
     }
 
@@ -32,6 +34,14 @@ public abstract class AbstractBaseEntity implements Persistable<Integer> {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     @Override

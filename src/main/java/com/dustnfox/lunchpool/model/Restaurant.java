@@ -18,7 +18,7 @@ public class Restaurant extends AbstractNamedEntity {
     @NotBlank
     private String description;
 
-    private Restaurant() {
+    public Restaurant() {
     }
 
     public Restaurant(String name, String address) {

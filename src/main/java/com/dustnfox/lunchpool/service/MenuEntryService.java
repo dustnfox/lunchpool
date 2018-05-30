@@ -17,4 +17,6 @@ public interface MenuEntryService {
     List<MenuEntry> getAllWithDeleted(LocalDate date);
 
     void delete(int id);
+
+    List<MenuEntry> getAllWithRestaurants(LocalDate date);
 }

@@ -1,6 +1,7 @@
 package com.dustnfox.lunchpool.repository;
 
 import com.dustnfox.lunchpool.model.MenuEntry;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -23,4 +24,9 @@ public interface CrudMenuEntryRepository extends JpaRepository<MenuEntry, Intege
 
     @Transactional(readOnly = true)
     List<MenuEntry> getByDateOrderById(@NotNull LocalDate date);
+
+    @Transactional(readOnly = true)
+    @EntityGraph(attributePaths = {"restaurant"}, type = EntityGraph.EntityGraphType.LOAD)
+    @Query("SELECT m FROM MenuEntry m WHERE m.date=:date AND m.enabled=TRUE ORDER BY m.restaurant.id")
+    List<MenuEntry> getWithRestaurants(@Param("date") LocalDate date);
 }

@@ -1,6 +1,7 @@
 package com.dustnfox.lunchpool.service;
 
 import com.dustnfox.lunchpool.model.MenuEntry;
+import com.dustnfox.lunchpool.testdata.RestaurantTestData;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -48,5 +49,13 @@ public class MenuEntryServiceTest extends AbstractServiceTest {
     public void update() {
         service.update(ME_1_UPDATED, REST1_ID);
         assertMatch(service.getAllWithDeleted(ME_1_DATE), ME_1_UPDATED, ME_2, ME_INACTIVE);
+    }
+
+    @Test
+    public void getWithRestaurants() {
+        List<MenuEntry> entries = service.getAllWithRestaurants(ME_1_DATE);
+        assertMatch(entries, ME_1, ME_2);
+        RestaurantTestData.assertMatch(entries.get(0).getRestaurant(), ME_1.getRestaurant());
+        RestaurantTestData.assertMatch(entries.get(1).getRestaurant(), ME_2.getRestaurant());
     }
 }

@@ -1,7 +1,6 @@
 package com.dustnfox.lunchpool.service;
 
 import com.dustnfox.lunchpool.model.MenuEntry;
-import com.dustnfox.lunchpool.model.Restaurant;
 import com.dustnfox.lunchpool.repository.CrudMenuEntryRepository;
 import com.dustnfox.lunchpool.repository.CrudRestaurantRepository;
 import com.dustnfox.lunchpool.util.exception.NotFoundException;
@@ -9,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -28,12 +28,13 @@ public class MenuEntryServiceImpl implements MenuEntryService {
     public MenuEntry create(MenuEntry entry, int restaurantId) {
         Assert.notNull(entry, "Menu entry must not be null.");
         entry.setId(null);
-        Restaurant restaurant = restaurantRepository.getOne(restaurantId);
-        if (restaurant != null) {
-            entry.setRestaurant(restaurant);
+
+        try {
+            entry.setRestaurant(restaurantRepository.getOne(restaurantId));
+            entry.setRestaurant(restaurantRepository.getOne(restaurantId));
             return menuEntryRepository.save(entry);
-        } else {
-            throw new NotFoundException("Restaurant not found id=" + restaurantId);
+        } catch (EntityNotFoundException e) {
+            throw new NotFoundException("Restaurant not found id=" + restaurantId, e);
         }
     }
 
@@ -66,5 +67,10 @@ public class MenuEntryServiceImpl implements MenuEntryService {
     @Override
     public void delete(int id) {
         menuEntryRepository.setStatusForMenuEntry(id, false);
+    }
+
+    @Override
+    public List<MenuEntry> getAllWithRestaurants(LocalDate date) {
+        return menuEntryRepository.getWithRestaurants(date);
     }
 }

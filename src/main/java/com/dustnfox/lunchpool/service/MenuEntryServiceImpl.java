@@ -1,6 +1,7 @@
 package com.dustnfox.lunchpool.service;
 
 import com.dustnfox.lunchpool.model.MenuEntry;
+import com.dustnfox.lunchpool.model.Restaurant;
 import com.dustnfox.lunchpool.repository.CrudMenuEntryRepository;
 import com.dustnfox.lunchpool.repository.CrudRestaurantRepository;
 import com.dustnfox.lunchpool.util.exception.NotFoundException;
@@ -41,10 +42,8 @@ public class MenuEntryServiceImpl implements MenuEntryService {
     @Override
     public MenuEntry update(MenuEntry entry, int restaurantId) {
         Assert.notNull(entry, "Menu entry must not be null.");
-        MenuEntry oldEntry = get(entry.getId());
-        if (oldEntry == null || oldEntry.getRestaurant().getId() != restaurantId) {
-            throw new NotFoundException("Menu entry not found id=" + entry.getId());
-        }
+        Restaurant restaurant = restaurantRepository.getOne(restaurantId);
+        entry.setRestaurant(restaurant);
         return menuEntryRepository.save(entry);
     }
 

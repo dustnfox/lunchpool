@@ -1,5 +1,6 @@
 package com.dustnfox.lunchpool.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -19,6 +20,7 @@ public class MenuEntry extends AbstractDatedEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "rest_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private Restaurant restaurant;
 
     @NotNull

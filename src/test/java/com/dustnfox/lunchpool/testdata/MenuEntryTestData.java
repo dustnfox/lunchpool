@@ -15,15 +15,15 @@ public class MenuEntryTestData {
     private static final int ME3_ID = START_SEQ + 5;
     private static final int ME_INACTIVE_ID = START_SEQ + 6;
 
-    public static final MenuEntry ME_1 = new MenuEntry(ME1_ID, REST1, LocalDate.of(2018, 4, 7), 899, "Philadelphia roll");
-    public static final MenuEntry ME_2 = new MenuEntry(ME2_ID, REST1, LocalDate.of(2018, 4, 7), 655, "Tuna fish susi");
-    public static final MenuEntry ME_3 = new MenuEntry(ME3_ID, REST1, LocalDate.of(2018, 4, 8), 1250, "Beef steak");
+    public static final MenuEntry ME1 = new MenuEntry(ME1_ID, REST1, LocalDate.of(2018, 4, 7), 899, "Philadelphia roll");
+    public static final MenuEntry ME2 = new MenuEntry(ME2_ID, REST1, LocalDate.of(2018, 4, 7), 655, "Tuna fish susi");
+    public static final MenuEntry ME3 = new MenuEntry(ME3_ID, REST1, LocalDate.of(2018, 4, 8), 1250, "Beef steak");
     public static final MenuEntry ME_INACTIVE = new MenuEntry(ME_INACTIVE_ID, REST1, LocalDate.of(2018, 4, 7), 125, "Chicken soup");
-    public static final MenuEntry ME_1_UPDATED = new MenuEntry(ME1_ID, REST1, ME_1.getDate(), ME_1.getPriceInCents(), "New updated Chicken soup");
+    public static final MenuEntry ME1_UPDATED = new MenuEntry(ME1_ID, REST1, ME1.getDate(), ME1.getPriceInCents(), "New updated Chicken soup");
 
-    public static final MenuEntry[] ME_ALL_LIST_FIRST_DAY = new MenuEntry[]{ME_1, ME_2, ME_INACTIVE};
-    public static final MenuEntry[] ME_ACTIVE_LIST_FIRST_DAY = new MenuEntry[]{ME_1, ME_2};
-    public static final LocalDate ME_1_DATE = ME_1.getDate();
+    public static final MenuEntry[] ME_ALL_LIST_FIRST_DAY = new MenuEntry[]{ME1, ME2, ME_INACTIVE};
+    public static final MenuEntry[] ME_ACTIVE_LIST_FIRST_DAY = new MenuEntry[]{ME1, ME2};
+    public static final LocalDate ME1_DATE = ME1.getDate();
 
     static {
         ME_INACTIVE.setEnabled(false);

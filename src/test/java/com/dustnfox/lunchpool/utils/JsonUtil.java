@@ -6,10 +6,7 @@ import com.fasterxml.jackson.databind.ObjectReader;
 import org.springframework.test.web.servlet.ResultMatcher;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.dustnfox.lunchpool.controller.json.JacksonObjectMapper.getMapper;
@@ -70,5 +67,16 @@ public class JsonUtil {
             map.remove(prop);
         }
         return map;
+    }
+
+    public static <T> String writeAdditionProps(T obj, String addName, Object addValue) {
+        return writeAdditionProps(obj, Collections.singletonMap(addName, addValue));
+    }
+
+    public static <T> String writeAdditionProps(T obj, Map<String, Object> addProps) {
+        Map<String, Object> map = getMapper().convertValue(obj, new TypeReference<Map<String, Object>>() {
+        });
+        map.putAll(addProps);
+        return writeValue(map);
     }
 }

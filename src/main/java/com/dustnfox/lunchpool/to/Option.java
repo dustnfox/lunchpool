@@ -3,6 +3,7 @@ package com.dustnfox.lunchpool.to;
 import com.dustnfox.lunchpool.model.Restaurant;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Option {
@@ -19,7 +20,7 @@ public class Option {
         description = restaurant.getDescription();
     }
 
-    public void setMenuEntries(MenuEntryDTO menuEntry) {
-        menuEntries.add(menuEntry);
+    public void setMenuEntries(MenuEntryDTO... entries) {
+        menuEntries.addAll(Arrays.asList(entries));
     }
 }

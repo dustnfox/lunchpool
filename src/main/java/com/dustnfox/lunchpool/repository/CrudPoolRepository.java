@@ -14,7 +14,7 @@ import java.util.List;
 public interface CrudPoolRepository extends JpaRepository<Vote, Integer> {
 
     @Query("SELECT new com.dustnfox.lunchpool.model.PoolOption(v.restaurant, COUNT(v)) FROM Vote v " +
-            "WHERE v.date=:date GROUP BY v.restaurant")
+            "WHERE v.date=:date GROUP BY v.restaurant ORDER BY v.restaurant.id")
     List<PoolOption> getPoolResult(@Param("date") LocalDate date);
 
     Vote findFirstByDateAndUserId(LocalDate date, int userId);

@@ -10,9 +10,11 @@ import com.dustnfox.lunchpool.repository.CrudUserRepository;
 import com.dustnfox.lunchpool.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -39,15 +41,20 @@ public class PoolService {
 
 
     public void vote(int choiceId, int userId) {
-        Vote vote = poolRepository.findFirstByDateAndUserId(LocalDate.now(), userId);
+        vote(choiceId, userId, LocalDateTime.now());
+    }
+
+    @Transactional
+    public void vote(int choiceId, int userId, LocalDateTime dt) {
+        Vote vote = poolRepository.findFirstByDateAndUserId(dt.toLocalDate(), userId);
         try {
             if (vote == null) {
                 Restaurant restaurant = restaurantRepository.getOne(choiceId);
                 User user = userRepository.getOne(userId);
-                poolRepository.save(new Vote(LocalDate.now(), user, restaurant));
-            } else if (LocalTime.now().isBefore(DEADLINE_TIME)) {
+                poolRepository.save(new Vote(dt.toLocalDate(), user, restaurant));
+            } else if (dt.toLocalTime().isBefore(DEADLINE_TIME)) {
                 vote.setRestaurant(restaurantRepository.getOne(choiceId));
-                poolRepository.save(vote);
+                //poolRepository.save(vote);
             }
         } catch (EntityNotFoundException e) {
             throw new NotFoundException("Entity not found", e);

@@ -62,6 +62,10 @@ public class MenuEntryService {
         menuEntryRepository.setStatusForMenuEntry(id, false);
     }
 
+    public List<MenuEntry> getAllWithRestaurants() {
+        return menuEntryRepository.getWithRestaurants(LocalDate.now());
+    }
+
     public List<MenuEntry> getAllWithRestaurants(LocalDate date) {
         return menuEntryRepository.getWithRestaurants(date);
     }

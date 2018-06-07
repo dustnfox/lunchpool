@@ -15,7 +15,7 @@ import static com.dustnfox.lunchpool.testdata.RestaurantTestData.REST2;
 import static com.dustnfox.lunchpool.testdata.UserTestData.ADMIN_ID;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class PoolServiceImplTest extends AbstractControllerTest {
+public class PoolServiceTest extends AbstractControllerTest {
     private static final LocalDate POOL_DATE = LocalDate.of(2018, 4, 7);
     private static final LocalDateTime POOL_DATE_TIME_BEFORE_DL =
             LocalDateTime.of(2018, 4, 7, 9, 0);

@@ -13,7 +13,7 @@ import static com.dustnfox.lunchpool.testdata.RestaurantTestData.REST1_ID;
 
 public class MenuEntryServiceTest extends AbstractServiceTest {
     @Autowired
-    private MenuEntryServiceImpl service;
+    private MenuEntryService service;
 
     @Test
     public void get() {

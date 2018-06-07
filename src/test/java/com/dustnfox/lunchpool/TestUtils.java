@@ -12,11 +12,11 @@ public class TestUtils {
     }
 
     @SafeVarargs
-    public static <T> void assertMatch(List<String> ignoredFields, Iterable<T> actual, T... expected) {
-        assertMatch(ignoredFields, actual, Arrays.asList(expected));
+    public static <T> void assertMatchCollection(List<String> ignoredFields, Iterable<T> actual, T... expected) {
+        assertMatchCollection(ignoredFields, actual, Arrays.asList(expected));
     }
 
-    private static <T> void assertMatch(List<String> ignoredFields, Iterable<T> actual, Iterable<T> expected) {
+    private static <T> void assertMatchCollection(List<String> ignoredFields, Iterable<T> actual, Iterable<T> expected) {
         assertThat(actual).usingElementComparatorIgnoringFields(ignoredFields.toArray(new String[0])).isEqualTo(expected);
     }
 }

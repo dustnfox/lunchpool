@@ -42,14 +42,23 @@ public class User extends AbstractNamedEntity {
     public User() {
     }
 
+    public User(User u) {
+        this(u.getId(), u.getName(), u.getEmail(), u.getPassword(), u.enabled, u.getRoles());
+    }
+
     public User(Integer id, String name, String email, String password, Role role, Role... roles) {
         this(id, name, email, password, EnumSet.of(role, roles));
     }
 
     public User(Integer id, String name, String email, String password, Collection<Role> roles) {
+        this(id, name, email, password, true, roles);
+    }
+
+    public User(Integer id, String name, String email, String password, boolean enabled, Collection<Role> roles) {
         super(id, name);
         this.email = email;
         this.password = password;
+        this.enabled = enabled;
         setRoles(roles);
     }
 

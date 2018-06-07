@@ -32,7 +32,7 @@ public class UserTestData {
         assertThat(actual).usingElementComparatorIgnoringFields("password").isEqualTo(expected);
     }
 
-    public static ResultMatcher contentJson(User... expected) {
+    public static ResultMatcher contentJsonArray(User... expected) {
         return content().json(writeIgnoreProps(Arrays.asList(expected), "password"));
     }
 

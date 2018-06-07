@@ -9,14 +9,14 @@ public class Option {
     private final int id;
     private final String name;
     private final String address;
-    private final String desctiption;
+    private final String description;
     List<MenuEntryDTO> menuEntries = new ArrayList<>();
 
     public Option(Restaurant restaurant) {
         id = restaurant.getId();
         name = restaurant.getName();
         address = restaurant.getAddress();
-        desctiption = restaurant.getDescription();
+        description = restaurant.getDescription();
     }
 
     public void setMenuEntries(MenuEntryDTO menuEntry) {

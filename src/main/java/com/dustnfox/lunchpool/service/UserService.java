@@ -33,7 +33,7 @@ public class UserService {
         checkNotFoundWithId(repository.setStatusForUser(id, false) != 0, id);
     }
 
-    public void enable(int id, boolean enabled) {
+    public void enable(int id) {
         checkNotFoundWithId(repository.setStatusForUser(id, true), id);
     }
 

@@ -16,8 +16,8 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(AdminRestaurantController.REST_URL)
-public class AdminRestaurantController {
+@RequestMapping(RestaurantController.REST_URL)
+public class RestaurantController {
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
     static final String REST_URL = "/admin/restaurant";
@@ -25,7 +25,7 @@ public class AdminRestaurantController {
     private final RestaurantService service;
 
     @Autowired
-    public AdminRestaurantController(RestaurantService service) {
+    public RestaurantController(RestaurantService service) {
         this.service = service;
     }
 

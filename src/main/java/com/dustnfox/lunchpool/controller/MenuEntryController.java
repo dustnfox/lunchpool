@@ -18,8 +18,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping(AdminMenuEntryController.REST_URL)
-public class AdminMenuEntryController {
+@RequestMapping(MenuEntryController.REST_URL)
+public class MenuEntryController {
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
     static final String REST_URL = "/admin";
@@ -27,7 +27,7 @@ public class AdminMenuEntryController {
     private final MenuEntryService service;
 
     @Autowired
-    public AdminMenuEntryController(MenuEntryService service) {
+    public MenuEntryController(MenuEntryService service) {
         this.service = service;
     }
 

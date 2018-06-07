@@ -1,18 +1,34 @@
 package com.dustnfox.lunchpool.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "votes", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"user_id", "date"}, name = "user_date_idx")
+})
 public class Vote extends AbstractDatedEntity {
 
-    private final User user;
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private User user;
 
-    private final Restaurant restaurant;
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "rest_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Restaurant restaurant;
 
-    public Vote(User user, Restaurant restaurant) {
-        super(null, LocalDate.now());
-        this.user = user;
-        this.restaurant = restaurant;
+
+    public Vote() {
     }
+
 
     public Vote(LocalDate date, User user, Restaurant restaurant) {
         super(date);
@@ -20,9 +36,12 @@ public class Vote extends AbstractDatedEntity {
         this.restaurant = restaurant;
     }
 
-    public Vote(Integer id, LocalDate date, User user, Restaurant restaurant) {
-        super(id, date);
+
+    public void setUser(User user) {
         this.user = user;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
     }
 
@@ -31,7 +50,6 @@ public class Vote extends AbstractDatedEntity {
         return "Vote{" +
                 "user=" + user +
                 ", restaurant=" + restaurant +
-                ", id=" + id +
                 '}';
     }
 }
